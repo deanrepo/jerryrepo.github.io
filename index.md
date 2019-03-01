@@ -1,39 +1,20 @@
 ## 浅谈五种IO模型
+今天去面试被问到常用的IO模型，虽然了解一点，但不是很清楚，回答的支支吾吾，当时恨不得拿块板砖往自己嘴上打两下:sweat_smile: 回去之后饿补了下，本文的主要内容翻译总结自《Unix Network Programming, Volume 1: The Sockets Networking API (3rd Edition)》by W. Richard Stevens  (Author), Bill Fenner (Author), Andrew M. Rudoff (Author)，6.2 I/O Models。
 
-今天去面试被问到常用的IO模型，虽然了解一点，但不是很清楚，回答的支支吾吾，当时恨不得拿块板砖往自己嘴上打两下:sweat_smile:
+在UNIX网络编程中有五种IO模型：
+1. 阻塞型I/O(blocking I/O)
+2. 非阻塞型I/O(nonblocking I/O)
+3. I/O多路复用(I/O multiplexing)
+4. 信号驱动型I/O(signal driven I/O)
+5. 异步I/O(asynchronous I/O)
 
-You can use the [editor on GitHub](https://github.com/jerryrepo/jerryrepo.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+在接下来的例子中，对于输入操作通常有两个不同的阶段：
+1. 等待数据准备就绪
+2. 将数据从内核拷贝到用户进程中
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+###1.阻塞型I/O
+阻塞型I/O顾名思义，是进程的执行的阻塞型的，即当一个操作未完成之前，进程中其他的操作被阻塞，直到当前操作完成后才能执行下个操作，如下图所示。
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jerryrepo/jerryrepo.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
