@@ -31,7 +31,7 @@
 
 ### 4.信号驱动型I/O
 我们也可以使用信号，当描述符就绪时，让kernel用SIGIO信号通知我们。我们称这种模型为信号驱动型I/O，下图所示。
-![signal driven io](images/signal_driven_io.png)
+![signal driven io](images/signal_driven_io.gif)
 
 ### 5.异步I/O
 通常来说，异步操作方式是告诉内核去开始这个操作，直到整个操作完成（包括把数据从内核拷贝到我们的缓存）后再通知我们。异步I/O模型和信号驱动型I/O的主要区别是前者是当一个I/O操作可以开始时（can be initiated），内核就通知我们；而后者是当整个I/O操作完成时才通知我们。
